@@ -1,4 +1,4 @@
-1
+2
 1
 Rin
 Male
@@ -9,3 +9,13 @@ chairin@gmail.com
 IT
 Computer scient
 250
+2
+Tan
+Male
+21
+3/4/2008
+PP
+25027304
+Network
+TK
+280
