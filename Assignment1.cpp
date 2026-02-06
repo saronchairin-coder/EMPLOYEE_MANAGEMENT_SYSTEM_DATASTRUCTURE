@@ -116,24 +116,9 @@ public:
 
     // File handling functions
     void writeToFile(ofstream &out) const {
-
-        
-
-            //new
              out << id << '\n' << name << '\n' << gender << '\n' << age << '\n'
             << dob << '\n' << address << '\n' << phoneEmail << '\n'
             << position << '\n' << department << '\n' << salary << '\n';
-        // out <<left<<
-        //         setw(20)<<id<<
-        //         setw(20)<<name<<
-        //         setw(20)<<gender<<
-        //         setw(20)<<age<<
-        //         setw(20)<<dob<<
-        //         setw(20)<<address<<
-        //         setw(20)<<phoneEmail<<
-        //         setw(20)<<position<<
-        //         setw(20)<<department<<
-        //         setw(20)<<salary<<endl;
 
     }
 
@@ -201,6 +186,8 @@ void loadFromFile(vector<Employee> &emps, const string &filename) {
         emps.push_back(e);
     }
 }
+
+
 //=================menu Fucntion ===================
 void addEmployee(vector<Employee> &emps) {
     int n;
@@ -211,13 +198,6 @@ void addEmployee(vector<Employee> &emps) {
         e.input();
         emps.push_back(e);
     }
-    //show result after input 
-    // if(!emps.empty()){
-    //     cout << "\n===Employee List===\n";
-    //     emps[0].Header();   // header 1 time
-    //     for (const auto &e : emps)
-    //         e.display();
-    // }
 }
 
 void viewEmployees(const vector<Employee> &emps) {
@@ -274,19 +254,6 @@ void searchEmployee(const vector<Employee> &emps) {
     } while (choice != 3);
 }
 
-// void updateEmployee(vector<Employee> &emps) {
-//     int id; string name;
-//     cout << "Update by ID (-1 to skip): "; cin >> id; cin.ignore();
-//     if (id != -1) {
-//         for (auto &e : emps)
-//             if (e.getId() == id) e.update();
-//     }
-//     cout << "Update by Name (empty to skip): "; getline(cin, name);
-//     if (!name.empty()) {
-//         for (auto &e : emps)
-//             if (e.getName() == name) e.update();
-//     }
-// }
 void updateEmployee(vector<Employee> &emps) {
     int choice;
     do {
@@ -334,23 +301,6 @@ void updateEmployee(vector<Employee> &emps) {
     } while (choice != 3);
 }
 
-// void deleteEmployee(vector<Employee> &emps) {
-//     int id; string name;
-//     cout << "Delete by ID (-1 to skip): "; cin >> id; cin.ignore();
-//     if (id != -1) {
-//         for (auto it = emps.begin(); it != emps.end(); ) {
-//             if (it->getId() == id) it = emps.erase(it);
-//             else ++it;
-//         }
-//     }
-//     cout << "Delete by Name (empty to skip): "; getline(cin, name);
-//     if (!name.empty()) {
-//         for (auto it = emps.begin(); it != emps.end(); ) {
-//             if (it->getName() == name) it = emps.erase(it);
-//             else ++it;
-//         }
-//     }
-// }
 
 void deleteEmployee(vector<Employee> &emps) {
     int choice;
@@ -427,17 +377,11 @@ void sortEmployees(vector<Employee> &emps) {
             case 1:
                 sort(emps.begin(), emps.end(), compareById);   // sort by ID
 
-                // sort(emps.begin(), emps.end(), [](const Employee &a, const Employee &b){
-                //     return a.getId() < b.getId();
-                // });
                 cout << "Employees sorted by ID successfully.\n";
                 break;
             case 2:
                 sort(emps.begin(), emps.end(), compareByName); // sort by Name
 
-                // sort(emps.begin(), emps.end(), [](const Employee &a, const Employee &b){
-                //     return a.getName() < b.getName();
-                // });
                 cout << "Employees sorted by Name successfully.\n";
                 break;
             case 3:
@@ -522,6 +466,19 @@ void insertEmployee(vector<Employee> &emps) {
     } while (choice != 4);
 }
 
+ void savefileAndexit(vector<Employee>& emps) {
+    char ans;
+    saveToFile(emps, "employees.txt");
+    cout << "Do you want to delete the file? (y/n): ";
+    cin >> ans;
+
+    if (ans == 'y' || ans == 'Y') {
+        deleteFile("employees.txt");
+    }
+
+    cout << "Exit program.\n";
+
+    }
 // ---------------- Main Function ----------------
 int main() {
     vector<Employee> empList;
@@ -538,79 +495,10 @@ int main() {
             cout << "⎮  4. UPDATE Employee                                              ⎮\n";
             cout << "⎮  5. DELETE Employee                                              ⎮\n";
             cout << "⎮  6. SORT   Employees                                             ⎮\n";
-            cout << "⎮  7. INSERT Employee at Position                                  ⎮\n";
+            cout << "⎮  7.RT Employee at Position                                       ⎮\n";
             cout << "⎮  8. SAVE & EXIT                                                  ⎮\n";
-            cout << "∐❄︎-❄︎-❄︎-❄︎--❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎∐\n";
+            cout << "∐❄︎-❄︎-❄︎-❄︎--❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎-❄︎∐\n";
             cout << "Enter your choice: "; cin >> choice; cin.ignore();        
-    //     if (choice == 1) {
-    //         //add multiple employees 
-    //            int numEmployees;
-    //     cout << "How many employees do you want to add? ";
-    //     cin >> numEmployees;
-    //     cin.ignore(); // clear newline from input buffer
-    // for (int i = 0; i < numEmployees; i++) {
-    //     cout << "\nEnter details for Employee #" << (i + 1) << ":\n";
-    //     Employee e;
-    //     e.input();
-    //     employees.push_back(e);
-    //  }
-    // }
-    //     else if (choice == 2) {
-    //         cout << "\n--- Employee List ---\n";
-    //          emp.Header();
-    //         for (const auto & e : employees)
-    //               e.display();   
-    //     }
-    //     else if (choice == 3) {
-    //         int id; string name;
-    //         cout << "Search by ID (enter -1 to skip): "; cin >> id; cin.ignore();
-    //         if (id != -1) {
-    //             for (const auto & e : employees)
-    //                 if (e.getId() == id) e.display();
-    //         }
-    //         cout << "Search by Name (enter empty to skip): "; getline(cin, name);
-    //         if (!name.empty()) {
-    //             for (const auto & e : employees)
-    //                 if (e.getName() == name) e.display();
-    //         }
-    //     }
-    //     else if (choice == 4) {
-    //         int id; string name;
-    //         cout << "Update by ID (enter -1 to skip): "; cin >> id; cin.ignore();
-    //         if (id != -1) {
-    //             for (auto & e : employees)
-    //                 if (e.getId() == id) e.update();
-    //         }
-    //         cout << "Update by Name (empty to skip): "; getline(cin, name);
-    //         if (!name.empty()) {
-    //             for (auto & e : employees)
-    //                 if (e.getName() == name) e.update();
-    //         }
-    //     }
-    //     else if (choice == 5) {
-    //         int id; string name;
-    //         cout << "Delete by ID (enter -1 to skip): "; cin >> id; cin.ignore();
-    //         if (id != -1) {
-    //             for (auto it = employees.begin(); it != employees.end(); ) {
-    //                 if (it->getId() == id) it = employees.erase(it);
-    //                 else ++it;
-    //             }
-    //         }
-    //         cout << "Delete by Name (empty to skip): "; getline(cin, name);
-    //         if (!name.empty()) {
-    //             for (auto it = employees.begin(); it != employees.end(); ) {
-    //                 if (it->getName() == name) it = employees.erase(it);
-    //                 else ++it;
-    //             }
-    //         }
-    //     }
-    //     else if (choice == 6) {
-    //         saveToFile(employees, "employees.txt");
-    //         cout << "Exiting...\n";
-    //     }
-    //     else {
-    //         cout << "Invalid choice!\n";
-    //     }
 
      switch(choice){
         case 1: addEmployee(employees); break;
@@ -620,26 +508,12 @@ int main() {
         case 5: deleteEmployee(employees); break;
         case 6: sortEmployees(employees); break;
         case 7: insertEmployee(employees); break;
-        // case 8: saveToFile(employees, "employees.txt");
-        //         cout << "Exiting...\n"; break;
-        case 8: {
-    char ans;
-    saveToFile(employees, "employees.txt");
-    // saveToNewFile(employees);
+        case 8: savefileAndexit(employees); break;
 
-    cout << "Do you want to delete the file? (y/n): ";
-    cin >> ans;
-
-    if (ans == 'y' || ans == 'Y') {
-        deleteFile("employees.txt");
-    }
-
-    cout << "Exit program.\n";
-    break;
-}
         default: cout << "Invalid choice! Try again.\n";
      }
+     
     } while (choice != 8);
-
+    
     return 0;
 }
